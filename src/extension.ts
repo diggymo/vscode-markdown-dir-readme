@@ -6,7 +6,7 @@ import * as path from "path";
 const MARKDOWN_LINK_PATTERN = /(?<!!)\[([^\]]*)\]\(([^)]+)\)/g;
 
 /**
- * ディレクトリリンクをREADME.mdに解決するDocumentLinkProvider
+ * ディレクトリリンクを_.mdに解決するDocumentLinkProvider
  */
 class DirectoryReadmeLinkProvider implements vscode.DocumentLinkProvider {
   async provideDocumentLinks(
@@ -45,11 +45,11 @@ class DirectoryReadmeLinkProvider implements vscode.DocumentLinkProvider {
           vscode.Uri.file(absolutePath)
         );
         if (stat.type & vscode.FileType.Directory) {
-          const readmePath = path.join(absolutePath, "README.md");
+          const readmePath = path.join(absolutePath, "_.md");
           try {
             await vscode.workspace.fs.stat(vscode.Uri.file(readmePath));
           } catch {
-            // README.mdが存在しない場合はスキップ
+            // _.mdが存在しない場合はスキップ
             continue;
           }
 
@@ -64,7 +64,7 @@ class DirectoryReadmeLinkProvider implements vscode.DocumentLinkProvider {
             range,
             vscode.Uri.file(readmePath)
           );
-          link.tooltip = "Open README.md";
+          link.tooltip = "Open _.md";
           links.push(link);
         }
       } catch {
@@ -78,7 +78,7 @@ class DirectoryReadmeLinkProvider implements vscode.DocumentLinkProvider {
 }
 
 /**
- * markdown-itプラグイン: プレビュー内のディレクトリリンクをREADME.mdに書き換え
+ * markdown-itプラグイン: プレビュー内のディレクトリリンクを_.mdに書き換え
  */
 function markdownItDirectoryReadmePlugin(md: any): void {
   md.core.ruler.push(
@@ -135,14 +135,14 @@ function markdownItDirectoryReadmePlugin(md: any): void {
             try {
               const stat = fs.statSync(absolutePath);
               if (stat.isDirectory()) {
-                const readmePath = path.join(absolutePath, "README.md");
+                const readmePath = path.join(absolutePath, "_.md");
                 if (fs.existsSync(readmePath)) {
-                  // hrefをREADME.mdに書き換え
+                  // hrefを_.mdに書き換え
                   const newHref = hrefAttr.replace(
                     linkPath,
                     linkPath.endsWith("/")
-                      ? linkPath + "README.md"
-                      : linkPath + "/README.md"
+                      ? linkPath + "_.md"
+                      : linkPath + "/_.md"
                   );
                   children[j].attrSet("href", newHref);
                 }

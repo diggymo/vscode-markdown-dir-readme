@@ -1,12 +1,12 @@
 # Markdown Directory README Opener
 
-Markdownのディレクトリリンクをクリックすると、自動的にそのディレクトリの `README.md` を開くVSCode拡張機能です。
+Markdownのディレクトリリンクをクリックすると、自動的にそのディレクトリの `_.md` を開くVSCode拡張機能です。
 
 ## 機能
 
-- **エディタ**: `Cmd+Click`（Windows: `Ctrl+Click`）でディレクトリリンクをクリック → `README.md` が開く
-- **プレビュー**: Markdownプレビュー内のディレクトリリンクをクリック → `README.md` が開く
-- `README.md` が存在しないディレクトリリンクはデフォルト動作のまま
+- **エディタ**: `Cmd+Click`（Windows: `Ctrl+Click`）でディレクトリリンクをクリック → `_.md` が開く
+- **プレビュー**: Markdownプレビュー内のディレクトリリンクをクリック → `_.md` が開く
+- `_.md` が存在しないディレクトリリンクはデフォルト動作のまま
 
 ## インストール
 

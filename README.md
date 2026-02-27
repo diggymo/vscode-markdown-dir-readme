@@ -1,20 +1,39 @@
 # Markdown Directory README Opener
 
-Markdownのディレクトリリンクをクリックすると、自動的にそのディレクトリの `_.md` を開くVSCode拡張機能です。
+VSCodeのMarkdownでは `[link](./some-dir/)` のようなディレクトリへのリンクをクリックしても何も起きません。
 
-## 機能
+この拡張機能は、ディレクトリリンクをクリックした際にそのディレクトリ内の `_.md` を自動的に開きます。
 
-- **エディタ**: `Cmd+Click`（Windows: `Ctrl+Click`）でディレクトリリンクをクリック → `_.md` が開く
-- **プレビュー**: Markdownプレビュー内のディレクトリリンクをクリック → `_.md` が開く
+```
+project/
+├── docs/
+│   └── _.md        ← これが開かれる
+├── notes/
+│   └── _.md        ← これが開かれる
+└── README.md        [docs](./docs/) をクリック → docs/_.md が開く
+```
+
+## 対応箇所
+
+- **エディタ**: `Cmd+Click`（Windows: `Ctrl+Click`）でディレクトリリンクをフォロー
+- **Markdownプレビュー**: プレビュー内のリンクをクリック
 - `_.md` が存在しないディレクトリリンクはデフォルト動作のまま
 
 ## インストール
 
-[Releases](https://github.com/diggymo/vscode-markdown-dir-readme/releases) から `.vsix` ファイルをダウンロードし、VSCodeでインストール:
+1. このリポジトリをクローンしてビルド:
 
-1. `Cmd+Shift+P`（Windows: `Ctrl+Shift+P`）でコマンドパレットを開く
-2. **Extensions: Install from VSIX...** を選択
-3. ダウンロードした `.vsix` ファイルを選択
+```sh
+git clone https://github.com/diggymo/vscode-markdown-dir-readme.git
+cd vscode-markdown-dir-readme
+pnpm install
+pnpm exec vsce package
+```
+
+2. 生成された `.vsix` ファイルをVSCodeでインストール:
+   - `Cmd+Shift+P`（Windows: `Ctrl+Shift+P`）でコマンドパレットを開く
+   - **Extensions: Install from VSIX...** を選択
+   - `markdown-dir-readme-0.0.1.vsix` を選択
 
 ## 開発
 
@@ -24,9 +43,3 @@ pnpm run compile
 ```
 
 `F5` でExtension Development Hostを起動してデバッグできます。
-
-### パッケージ作成
-
-```sh
-pnpm exec vsce package
-```

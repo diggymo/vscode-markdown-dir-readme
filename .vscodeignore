@@ -4,3 +4,7 @@ src/**
 .gitignore
 tsconfig.json
 .morifuji/**
+node_modules/**
+pnpm-lock.yaml
+test-workspace/**
+test-dir/**
